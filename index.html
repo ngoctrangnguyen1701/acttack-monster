@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monster Slayer</title>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="scripts/vue.js"></script>
+</head>
+<body style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 30px;">
+    <div id="app">
+        <audio id="start-game-audio">
+            <source src="audio/start-game.wav" type="audio/wav">
+        </audio>
+        <audio id="alarm-audio">
+            <source src="audio/alarm-when-health-low.wav" type="audio/wav">
+        </audio>
+        <audio id="game-over-audio">
+            <source src="audio/game-over.wav" type="audio/wav">
+        </audio>
+        <audio id="heal-audio">
+            <source src="audio/heal.wav" type="audio/wav">
+        </audio>
+        <audio id="monster-laugh-audio">
+            <source src="audio/monster-laugh.wav" type="audio/wav">
+        </audio>
+        <audio id="punch-audio">
+            <source src="audio/punch.wav" type="audio/wav">
+        </audio>
+        <audio id="victory-audio">
+            <source src="audio/victory.wav" type="audio/wav">
+        </audio>
+        <audio id="victory2-audio">
+            <source src="audio/victory2.wav" type="audio/wav">
+        </audio>
+        <div class="volume" @click="isMute = !isMute">
+            <i class="fa-solid fa-volume-xmark" v-if="isMute"></i>
+            <i class="fa-solid fa-volume-high" v-else></i>
+        </div>
+        {{monsterAttack}}
+        <section class="row">
+            <div class="small-6 columns">
+                <div class="win" v-if="winner === 'You'">WIN</div>
+                <h1 class="text-center" style="margin-bottom: 0;">YOU</h1>
+                <h3>Win: <span>{{youWin}}</span></h3>
+                <img src="img/chibi.png" alt="" style="height: 450px; width: 100%">
+
+                <div class="healthbar">
+                    <div 
+                        class='damage-index'
+                        v-if="isDamageYou"
+                    >-{{damageIndex}}</div>
+                    <div 
+                        class='heal-index'
+                        v-if="isHealYou"
+                    >+{{healIndex}}</div>
+                    <div
+                        class="healthbar-progress"
+                        :class="isAlarm ? 'run-healthbar-progress' : ''"
+                        :style="{width: healthbarProgressYou + '%'}"
+                    >
+                    </div>
+                    <p class="healthbar-text">{{healthbarYou + '%'}}</p>
+                </div>
+            </div>
+            <div class="small-6 columns">
+                <div class="win" v-if="winner === 'Monster'">WIN</div>
+                <h1 class="text-center" style="margin-bottom: 0;">MONSTER</h1>
+                <h3>Win: <span>{{monsterWin}}</span></h3>
+                <img src="img/monster.png" alt="" style="height: 450px; width: 100%">
+                
+                <div class="healthbar">
+                    <div 
+                        class='damage-index'
+                        v-if="isDamageMonster"
+                    >-{{damageIndex}}</div>
+                    <div
+                        class="healthbar-progress"
+                        :style="{width: healthbarProgressMonster + '%'}"
+                    >
+                    </div>
+                    <p class="healthbar-text">{{healthbarMonster + '%'}}</p>
+                </div>
+            </div>
+        </section>
+        <section class="row controls">
+            <div class="small-12 columns">
+                <button id="start-game" @click="startGame" v-if="!isStartGame">START NEW GAME</button>
+                <button id="attack" @click="attack" v-if="isStartGame">ATTACK</button>
+                <button id="heal" @click="heal" v-if="isStartGame">HEAL {{timeOfHeal}}</button>
+                <button id="give-up" @click="giveup" v-if="isStartGame">GIVE UP</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>

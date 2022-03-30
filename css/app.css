@@ -1,0 +1,209 @@
+* {
+    box-sizing: border-box;
+}
+.text-center {
+    text-align: center;
+}
+
+.healthbar {
+    height: 40px;
+    background-color: #eee;
+    margin: auto;
+    position: relative;
+}
+
+.controls, .log {
+    margin-top: 30px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 3px 6px #ccc;
+}
+
+.turn {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.log ul {
+    list-style: none;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.log ul li {
+    margin: 5px;
+}
+
+.log ul .player-turn {
+    color: blue;
+    background-color: #e4e8ff;
+}
+
+.log ul .monster-turn {
+    color: red;
+    background-color: #ffc0c1;
+}
+
+button {
+    font-size: 20px;
+    background-color: #eee;
+    padding: 12px;
+    box-shadow: 0 1px 1px black;
+    margin: 10px;
+}
+
+#start-game {
+    background-color: #aaffb0;
+}
+
+#start-game:hover {
+    background-color: #76ff7e;
+}
+
+#attack {
+    background-color: #ff7367;
+}
+
+#attack:hover {
+    background-color: #ff3f43;
+}
+
+#special-attack {
+    background-color: #ffaf4f;
+}
+
+#special-attack:hover {
+    background-color: #ff9a2b;
+}
+
+#heal {
+    background-color: #aaffb0;
+}
+
+#heal:hover {
+    background-color: #76ff7e;
+}
+
+#give-up {
+    background-color: #ffffff;
+}
+
+#give-up:hover {
+    background-color: #c7c7c7;
+}
+
+.healthbar-progress{
+    height: 100%;
+    background-color: red;
+    margin: 0; 
+    transition: width 0.5s;
+
+    position: absolute;
+}
+
+.healthbar-text{
+    text-align: center;
+    line-height: 40px;
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+
+    position: absolute;
+    z-index: 1;
+}
+
+.run-healthbar-progress{
+    /* transition: width 0.5s; */
+    /* animation: run-healthbar-progress 1s ease-in; */
+    animation: alarm 1s ease-in 4;
+}
+
+@keyframes alarm {
+    0%{opacity: 1;}
+    25%{opacity: 0}
+    50%{opacity: 1;}
+    75%{opacity: 0;}
+    100%{opacity: 1;}
+}
+
+.small-6{
+    position: relative;
+}
+.win{
+    width: 100px;
+    height: 100px;
+    border: 3px solid #ff3f43;
+    border-radius: 50%;
+    background-color: #eee;
+
+    line-height: 100px;
+    text-align: center;
+    color: #ff3f43;
+    font-size: 30px;
+
+    position: absolute;
+    top: 50%;
+    animation: run-win 0.75s ease-out;
+}
+
+.damage-index, .heal-index{
+    font-size: 35px;
+    position: absolute;
+    right: 0;
+}
+.damage-index{
+    color: red;
+    animation: run-damage-index 1s ease-out forwards;
+}
+.run-damage-index{
+    visibility: visible;
+    animation: run-damage-index 1s ease-out forwards;
+    /* forwards: giữ trạng thái của element sau khi chạy xong animation */
+}
+.heal-index{
+    color: green;
+    animation: run-heal-index 1s ease-out;
+}
+.run-heal-index{
+    visibility: visible;
+    animation: run-heal-index 1s ease-out;
+}
+/* @keyframes run-healthbar-progress {
+    0%{width: 0%}
+    100%{width: 100%}
+} */
+
+@keyframes run-win {
+    0%{transform: perspective(500px) translateZ(300px);}
+    100%{transform: perspective(500px) translateZ(0);}
+}
+
+@keyframes run-damage-index {
+    0%{top: 0; opacity: 1}
+    100%{top: -50px; opacity: 0}
+}
+
+@keyframes run-heal-index {
+    0%{top: 0; opacity: 1}
+    100%{top: -50px; opacity: 0}
+}
+
+.volume{
+    position: absolute;
+    z-index: 1;
+    left: 30px;
+    top: 15px;
+
+    font-size: 45px;
+    color: skyblue;
+    cursor: pointer;
+}
+
+h3 {
+    text-align: center;
+    color: violet;
+    margin: 0px;
+}
